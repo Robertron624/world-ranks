@@ -1,9 +1,10 @@
 import { useState } from "react"
 
-import { countriesBaseUrl } from "../constants";
-import { Country } from "../types";
+import { countriesBaseUrl } from "../../lib/constants";
+import { Country } from "../../lib/types";
 import { sortCountriesByPopulation } from "../utils";
 import { Search } from "./Search";
+import SortFilters from "./SortingFilters";
 
 async function getAllPosts(orderBy: string, order: "asc" | "desc" = "asc") {
     let url = `${countriesBaseUrl}`;
@@ -38,6 +39,9 @@ export default async function MainBox() {
                     Found {allPosts.length} countries
                 </p>
                 <Search />
+            </div>
+            <div className="flex justify-between w-full">
+                <SortFilters />
             </div>
         </section>
     )

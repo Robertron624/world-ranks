@@ -1,4 +1,4 @@
-import { Country } from "./types";
+import { Country } from "../lib/types";
 
 export function sortCountriesByPopulation(countries: Country[], order: "asc" | "desc") {
     return countries.sort((a, b) => {

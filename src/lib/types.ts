@@ -270,4 +270,11 @@ export interface Country {
     format: string
     regex: string
   }
-  
+
+// a type of options to sort by
+export type SortByType = "name" | "population" | "area" | "gini"
+
+export interface Option {
+  value: string;
+  label: string;
+}

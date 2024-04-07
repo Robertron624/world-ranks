@@ -10,6 +10,7 @@ const config: Config = {
     colors: {
       jet: "#1B1D1F",
       bunker: "#282B30",
+      white: "#FFFFFF",
       "dodger-blue": "#4E80EE",
       "shuttle-gray": "#6C727F",
       "light-grayish-blue": "#D2D5DA",
@@ -17,6 +18,11 @@ const config: Config = {
     extend: {
       backgroundImage: {
         "hero-pattern": "url('/hero-image-wr.jpg')",
+        "custom-checkbox": "url('/Done_round.svg')",
+        "expand-down": "url('/Expand_down.svg')",
+      },
+      backgroundPosition: {
+        "right-10-center": "right 10px center",
       },
     },
   },
