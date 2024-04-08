@@ -272,9 +272,8 @@ export interface Country {
   }
 
 // a type of options to sort by
-export type SortByType = "name" | "population" | "area" | "gini"
+export type SortByOption = "name" | "population" | "area";
 
-export interface Option {
-  value: string;
-  label: string;
-}
+export type RegionOption = "africa" | "americas" | "asia" | "europe" | "oceania";
+
+export type CountryStatusOption = "all" | "independent" | "un-member";

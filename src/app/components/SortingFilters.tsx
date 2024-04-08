@@ -1,44 +1,40 @@
 "use client";
 
-import { SortByType, Option } from "../../lib/types";
+import { CountryStatusOption, RegionOption, SortByOption } from "../../lib/types";
 
 import {
   sortingOptions,
   filterRegions,
   countryStatus,
 } from "../../lib/constants";
-import { useState } from "react";
 
-export default function SortFilters() {
-  const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
-  const [selectedStatus, setSelectedStatus] = useState<string[]>([]);
+
+interface SortFiltersProps {
+  onSortByChange: (sortBy: SortByOption) => void;
+  onRegionChange: (region: RegionOption) => void;
+  onStatusChange: (status: CountryStatusOption) => void;
+  selectedRegions: string[];
+  selectedStatus: string[];
+}
+
+export default function SortFilters(
+  {
+    onSortByChange,
+    onRegionChange,
+    onStatusChange,
+    selectedRegions,
+    selectedStatus,
+  }: SortFiltersProps
+) {
+
 
   const isCheckboxChecked = (value: string) => selectedRegions.includes(value);
 
-  const handleRegionChange = (region: string) => {
-    if (selectedRegions.includes(region)) {
-      setSelectedRegions(
-        selectedRegions.filter((selectedRegion) => selectedRegion !== region)
-      );
-    } else {
-      setSelectedRegions([...selectedRegions, region]);
-    }
-  };
 
   const labelBackgroundColor = (region: string) => {
     return selectedRegions.includes(region) ? "bg-jet" : "bg-bunker";
   };
 
-  const handleStatusChange = (status: string) => {
-    if (selectedStatus.includes(status)) {
-      setSelectedStatus(
-        selectedStatus.filter((selectedStatus) => selectedStatus !== status)
-      );
-    } else {
-      setSelectedStatus([...selectedStatus, status]);
-    }
-    console.info("selectedStatus", selectedStatus);
-  };
 
   const customCheckboxColor = (status: string) => {
     return selectedStatus.includes(status)
@@ -52,6 +48,7 @@ export default function SortFilters() {
       <select
         name='sort-by'
         className='mt-2 bg-bunker rounded-lg text-light-grayish-blue text-sm w-64 p-2 border-2 border-shuttle-gray bg-right-10-center bg-expand-down bg-no-repeat appearance-none cursor-pointer'
+        onChange={(e) => onSortByChange(e.target.value as SortByOption)}
       >
         {sortingOptions.map((option) => (
           <option key={option.value} value={option.value}>
@@ -66,7 +63,7 @@ export default function SortFilters() {
             <label
               className={`p-2 rounded-lg text-sm text-light-grayish-blue cursor-pointer ${labelBackgroundColor(
                 region.value
-              )}`}
+              )} hover:bg-jet duration-300 transition-all`}
               key={`${region.value}-${index}`}
               htmlFor={`${region.value}-${index}`}
             >
@@ -76,7 +73,7 @@ export default function SortFilters() {
                 value={region.value}
                 className='sr-only'
                 checked={isCheckboxChecked(region.value)}
-                onChange={() => handleRegionChange(region.value)}
+                onChange={() => onRegionChange(region.value as RegionOption)}
                 id={`${region.value}-${index}`}
               />
             </label>
@@ -105,7 +102,7 @@ export default function SortFilters() {
                 className='sr-only'
                 id={`${status.value}-${index}`}
                 checked={selectedStatus.includes(status.value)}
-                onChange={() => handleStatusChange(status.value)}
+                onChange={() => onStatusChange(status.value as CountryStatusOption)}
               />
             </label>
           ))}

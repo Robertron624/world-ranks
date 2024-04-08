@@ -1,17 +1,19 @@
 export const countriesBaseUrl = "https://restcountries.com/v3.1/all";
-import { Option } from "./types";
 
+interface SortingOption {
+    value: string;
+    label: string;
+}
 
-export const sortingOptions: Option[] = [
-    { value: "name", label: "Name" },
+export const sortingOptions: SortingOption[] = [
     { value: "population", label: "Population" },
+    { value: "name", label: "Name" },
     { value: "area", label: "Area" },
-    { value: "gini", label: "Gini" },
 ];
 
-export const filterRegions: Option[] = [
+export const filterRegions: SortingOption[] = [
     { value: "africa", label: "Africa" },
-    { value: "antartica", label: "Antartica"},
+    { value: "antartica", label: "Antarctica"},
     { value: "americas", label: "Americas" },
     { value: "asia", label: "Asia" },
     { value: "europe", label: "Europe" },
