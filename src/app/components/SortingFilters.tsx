@@ -47,7 +47,7 @@ export default function SortFilters() {
   };
 
   return (
-    <div className='mt-6'>
+    <div>
       <p className='text-sm text-shuttle-gray'>Sort by</p>
       <select
         name='sort-by'
