@@ -13,7 +13,7 @@ export const sortingOptions: SortingOption[] = [
 
 export const filterRegions: SortingOption[] = [
     { value: "africa", label: "Africa" },
-    { value: "antartica", label: "Antarctica"},
+    { value: "antarctic", label: "Antarctica"},
     { value: "americas", label: "Americas" },
     { value: "asia", label: "Asia" },
     { value: "europe", label: "Europe" },

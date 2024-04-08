@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 import { countriesBaseUrl } from "../../lib/constants";
 import {
@@ -36,13 +37,13 @@ export default function MainBox() {
       let url = `${countriesBaseUrl}`;
 
       try {
-        const response = await fetch(url);
+        const response = await axios.get(url);
 
-        if (!response.ok) {
+        if (!response.data) {
           throw new Error("An error occurred while fetching the data.");
         }
 
-        const data = await response.json();
+        const data = await response.data;
 
         const first20Countries = data.slice(0, 20);
 

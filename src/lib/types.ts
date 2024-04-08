@@ -274,6 +274,6 @@ export interface Country {
 // a type of options to sort by
 export type SortByOption = "name" | "population" | "area";
 
-export type RegionOption = "africa" | "americas" | "asia" | "europe" | "oceania";
+export type RegionOption = "africa" | "americas" | "asia" | "europe" | "oceania" | "antarctic";
 
 export type CountryStatusOption = "all" | "independent" | "un-member";

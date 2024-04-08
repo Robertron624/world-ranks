@@ -38,7 +38,7 @@ export function Table({ countries }: TableProps) {
                 <Image
                   src={country.flags.png}
                   alt={country.name.common}
-                  className='w-auto h-auto rounded-md'
+                  className='rounded-md w-auto'
                   width={64}
                   height={48}
                 />
