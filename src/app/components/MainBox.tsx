@@ -17,6 +17,7 @@ import {
 import { Search } from "./Search";
 import SortFilters from "./SortingFilters";
 import { Table } from "./Table";
+import TableSkeleton from "./skeletons/TableSkeleton";
 
 export default function MainBox() {
   const [allCountries, setAllCountries] = useState<Country[]>([]);
@@ -124,9 +125,9 @@ export default function MainBox() {
           selectedRegions={selectedRegions}
           selectedStatus={selectedStatus}
         />
-        {currentCountries && (
+        {currentCountries.length > 0 ? (
           <Table countries={currentCountries.slice(0, 20)} />
-        )}
+        ): (<TableSkeleton />)}
       </div>
     </section>
   );
