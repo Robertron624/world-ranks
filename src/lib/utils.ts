@@ -80,3 +80,15 @@ export function filterCountriesByRegion(countries: Country[], region: RegionOpti
 export function filterCountriesByStatus(countries: Country[], status: CountryStatusOption[]) {
     return countries.filter((country) => status.includes(country.status as CountryStatusOption));
 }
+
+export function searchCountriesByName(countries: Country[], searchTerm: string) {
+    return countries.filter((country) => country.name.common.toLowerCase().includes(searchTerm.toLowerCase()));
+}
+
+export function searchCountriesByRegion(countries: Country[], searchTerm: string) {
+    return countries.filter((country) => country.region.toLowerCase().includes(searchTerm.toLowerCase()));
+}
+
+export function searchCountriesBySubregion(countries: Country[], searchTerm: string) {
+    return countries.filter((country) => country.subregion.toLowerCase().includes(searchTerm.toLowerCase()));
+}

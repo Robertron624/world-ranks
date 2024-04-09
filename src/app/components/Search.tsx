@@ -3,13 +3,20 @@
 import { FormEvent } from "react"
 import Image from "next/image";
 
-export function Search() {
+interface SearchProps {
+    onSubmit: (searchQuery: string) => void;
+}
+
+export function Search(
+    {onSubmit}: SearchProps
+) {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
         const formData = new FormData(event.target as HTMLFormElement);
         const searchQuery = formData.get("searchQuery") as string;
-        console.log("searchQuery", searchQuery);
+        
+        onSubmit(searchQuery);
     }
 
     return(

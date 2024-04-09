@@ -14,6 +14,9 @@ import {
   sortCountriesBy,
   filterCountriesByRegion,
   filterCountriesByStatus,
+  searchCountriesByName,
+  searchCountriesByRegion,
+  searchCountriesBySubregion
 } from "../../lib/utils";
 import { Search } from "./Search";
 import SortFilters from "./SortingFilters";
@@ -112,11 +115,36 @@ export default function MainBox() {
     setCurrentCountries(filteredCountries);
   };
 
+  const onSearchSubmit = (searchTerm: string) => {
+    
+    let foundByName = searchCountriesByName(allCountries, searchTerm);
+
+    if(foundByName.length > 0) {
+      setCurrentCountries(foundByName);
+      return;
+    }
+
+    let foundByRegion = searchCountriesByRegion(allCountries, searchTerm);
+
+    if(foundByRegion.length > 0) {
+      setCurrentCountries(foundByRegion);
+      return;
+    }
+
+    let foundBySubregion = searchCountriesBySubregion(allCountries, searchTerm);
+
+    if(foundBySubregion.length > 0) {
+      setCurrentCountries(foundBySubregion);
+      return;
+    }
+
+  };
+
   return (
     <section className='p-4 bg-bunker text-light-grayish-blue w-full max-w-5xl mt-20 rounded-md'>
       <div className='flex justify-between w-full items-center text-shuttle-gray'>
         <p>Found {currentCountries.length} countries</p>
-        <Search />
+        <Search onSubmit={onSearchSubmit}/>
       </div>
       <div className='flex justify-between w-full mt-10'>
         <SortFilters
