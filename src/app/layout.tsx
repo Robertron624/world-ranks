@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 const beVietnamPro = Be_Vietnam_Pro({
@@ -20,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={beVietnamPro.className}>{children}</body>
+      <body className={beVietnamPro.className}>
+        <Toaster position="top-right"/>
+        {children}
+      </body>
     </html>
   );
 }

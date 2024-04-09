@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 import { countriesBaseUrl } from "../../lib/constants";
 import {
@@ -137,6 +138,12 @@ export default function MainBox() {
       setCurrentCountries(foundBySubregion);
       return;
     }
+
+    // if no results are found, show an error toast
+
+    toast.error("No countries found with that search term.", {
+      duration: 4000,
+    });
 
   };
 
