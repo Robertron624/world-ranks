@@ -52,10 +52,10 @@ export interface Country {
   }
   
   export interface Currencies {
-    EUR: Eur
+    [currencyCode: string]: CurrencyInfo
   }
   
-  export interface Eur {
+  export interface CurrencyInfo {
     name: string
     symbol: string
   }

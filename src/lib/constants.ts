@@ -1,4 +1,4 @@
-export const countriesBaseUrl = "https://restcountries.com/v3.1/all";
+export const countriesBaseUrl = "https://restcountries.com/v3.1";
 
 interface SortingOption {
     value: string;

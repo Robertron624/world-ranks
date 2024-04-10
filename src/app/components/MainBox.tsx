@@ -38,7 +38,7 @@ export default function MainBox() {
       orderBy: string,
       order: "asc" | "desc" = "asc"
     ) {
-      let url = `${countriesBaseUrl}`;
+      let url = `${countriesBaseUrl}/all`;
 
       try {
         const response = await axios.get(url);
@@ -148,7 +148,7 @@ export default function MainBox() {
   };
 
   return (
-    <section className='p-4 bg-bunker text-light-grayish-blue w-full max-w-5xl mt-20 rounded-md'>
+    <section className='p-4 bg-jet shadow-box text-light-grayish-blue w-full max-w-5xl mt-20 rounded-md'>
       <div className='flex justify-between w-full items-center text-shuttle-gray'>
         <p>Found {currentCountries.length} countries</p>
         <Search onSubmit={onSearchSubmit}/>

@@ -24,6 +24,9 @@ export default function RootLayout({
       <body className={beVietnamPro.className}>
         <Toaster position="top-right"/>
         {children}
+        <footer className="flex justify-center">
+    <a target="_blank" href="https://icons8.com/icon/fwZqiZ96Ihs_/america">America</a> icon by <a target="_blank" href="https://icons8.com" className="text-center">Icons8</a>
+    </footer>
       </body>
     </html>
   );

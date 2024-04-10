@@ -24,6 +24,9 @@ const config: Config = {
       backgroundPosition: {
         "right-10-center": "right 10px center",
       },
+      boxShadow: {
+        box: "0 0 2px 1px rgba(255, 255, 255, 0.5)",
+      }
     },
   },
   plugins: [],

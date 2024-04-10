@@ -17,9 +17,6 @@ export default function Home() {
       </div>
       <MainBox />
     </main>
-    <footer className="flex justify-center">
-    <a target="_blank" href="https://icons8.com/icon/fwZqiZ96Ihs_/america">America</a> icon by <a target="_blank" href="https://icons8.com" className="text-center">Icons8</a>
-    </footer>
     </>
   );
 }
