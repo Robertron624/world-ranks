@@ -78,7 +78,31 @@ export function filterCountriesByRegion(countries: Country[], region: RegionOpti
 }
 
 export function filterCountriesByStatus(countries: Country[], status: CountryStatusOption[]) {
-    return countries.filter((country) => status.includes(country.status as CountryStatusOption));
+    let filteredCountries: Country[] = [];
+
+    if(status.length === 0) return countries;
+
+    for(let i = 0; i < status.length; i++) {
+        const currentStatus = status[i];
+
+        switch(currentStatus) {
+            case 'independent': {
+                filteredCountries = countries.filter((country) => country.independent);
+                break;
+            }
+            case 'un-member': {
+                filteredCountries = countries.filter((country) => country.unMember);
+                break;
+            }
+            default: {
+                filteredCountries = countries;
+                break;
+            }
+        
+        }
+    }
+    
+    return filteredCountries;
 }
 
 export function searchCountriesByName(countries: Country[], searchTerm: string) {
@@ -90,5 +114,5 @@ export function searchCountriesByRegion(countries: Country[], searchTerm: string
 }
 
 export function searchCountriesBySubregion(countries: Country[], searchTerm: string) {
-    return countries.filter((country) => country.subregion.toLowerCase().includes(searchTerm.toLowerCase()));
+    return countries.filter((country) => country.subregion?.toLowerCase().includes(searchTerm.toLowerCase()));
 }
