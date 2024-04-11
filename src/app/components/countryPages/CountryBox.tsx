@@ -99,8 +99,7 @@ export default async function CountryBox({country}: CountryBoxProps) {
                 </p>
                 <div className="flex gap-4 mt-4 flex-wrap">
                     {neighboringCountries !== undefined ? neighboringCountries.map((neighboringCountry: Country) => (
-                        <div key={neighboringCountry.cca3} className="flex flex-col items-center">
-
+                        <div key={neighboringCountry.cca3} className="flex flex-col items-center max-w-[65px]">
                             <Link
                                 href={`/country/${neighboringCountry.name.common}`}
                             >
@@ -110,7 +109,9 @@ export default async function CountryBox({country}: CountryBoxProps) {
                                 </p>
                             </Link>
                         </div>
-                    )): <p className="text-sm text-shuttle-gray">No neighboring countries found.</p>}
+                    )): <p className="text-sm text-shuttle-gray">
+                            This country does not share land borders with any other countries
+                        </p>}
                 </div>
             </div>
         </main>

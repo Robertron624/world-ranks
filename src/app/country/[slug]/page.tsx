@@ -48,7 +48,7 @@ export default async function CountryPage({
   const exactCountry = await getExactCountry(params.slug, countries);
 
   return (
-    <main className='flex min-h-screen flex-col items-center bg-hero-pattern bg-no-repeat bg-contain bg-top pt-20 bg-jet'>
+    <main className='flex min-h-screen flex-col items-center bg-hero-pattern bg-no-repeat bg-contain bg-top py-20 bg-jet'>
       <div className='logo-container w-full flex justify-center'>
         <Link href='/'>
           <Image

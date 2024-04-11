@@ -32,14 +32,14 @@ export default function SortFilters(
 
 
   const labelBackgroundColor = (region: string) => {
-    return selectedRegions.includes(region) ? "bg-jet" : "bg-bunker";
+    return selectedRegions.includes(region) ? "bg-dodger-blue" : "bg-bunker";
   };
 
 
   const customCheckboxColor = (status: string) => {
     return selectedStatus.includes(status)
       ? "bg-dodger-blue border-dodger-blue bg-custom-checkbox"
-      : "bg-bunker border-shuttle-gray";
+      : "bg-jet border-shuttle-gray";
   };
 
   return (
@@ -63,7 +63,7 @@ export default function SortFilters(
             <label
               className={`p-2 rounded-lg text-sm text-light-grayish-blue cursor-pointer ${labelBackgroundColor(
                 region.value
-              )} hover:bg-jet duration-300 transition-all`}
+              )} hover:bg-dodger-blue duration-300 transition-all`}
               key={`${region.value}-${index}`}
               htmlFor={`${region.value}-${index}`}
             >
