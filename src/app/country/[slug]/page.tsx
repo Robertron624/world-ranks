@@ -4,6 +4,7 @@ import { countriesBaseUrl } from "@/lib/constants";
 import { Country } from "@/lib/types";
 import Image from "next/image";
 import CountryBox from "@/app/components/countryPages/CountryBox";
+import Link from "next/link";
 
 const countryData = async (countryName: string) => {
   let url = `${countriesBaseUrl}/name/${countryName}`;
@@ -43,13 +44,15 @@ export default async function CountryPage({
   return (
     <main className='flex min-h-screen flex-col items-center bg-hero-pattern bg-no-repeat bg-contain bg-top pt-20 bg-jet'>
       <div className='logo-container w-full flex justify-center'>
-        <Image
-          src='/Logo.svg'
-          alt='World Ranks logo'
-          width={200}
-          height={100}
-          className='w-auto'
-        />
+        <Link href='/'>
+          <Image
+            src='/Logo.svg'
+            alt='World Ranks logo'
+            width={200}
+            height={100}
+            className='w-auto'
+          />
+        </Link>
       </div>
         <CountryBox country={country[0]} />
     </main>
