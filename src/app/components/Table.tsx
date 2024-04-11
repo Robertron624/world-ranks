@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { Country } from "@/lib/types";
 import { formatCountryNumbers } from "@/lib/utils";
+import Link from "next/link";
 
 interface TableProps {
   countries: Country[];
@@ -35,6 +36,7 @@ export function Table({ countries }: TableProps) {
           {countries.map((country, index) => (
             <tr key={country.name.common} className=''>
               <td className={`p-2 ${index === 0 ? "pt-7" : "pt-4"}`}>
+                <Link href={`/country/${country.name.common}`}>
                 <Image
                   src={country.flags.png}
                   alt={country.name.common}
@@ -42,18 +44,27 @@ export function Table({ countries }: TableProps) {
                   width={64}
                   height={48}
                 />
+                </Link>
               </td>
               <td className={`p-2 ${index === 0 ? "pt-5" : "pt-4"}`}>
+                <Link href={`/country/${country.name.common}`}>
                 {country.name.common}
+                </Link>
               </td>
               <td className={`p-2 ${index === 0 ? "pt-5" : "pt-4"}`}>
-                {formatCountryNumbers(country.population)}
+                <Link href={`/country/${country.name.common}`}>
+                  {formatCountryNumbers(country.population)}
+                </Link>
               </td>
               <td className={`p-2 ${index === 0 ? "pt-5" : "pt-4"}`}>
-                {formatCountryNumbers(country.area)}
+                <Link href={`/country/${country.name.common}`}>
+                  {formatCountryNumbers(country.area)}
+                </Link>
               </td>
               <td className={`p-2 ${index === 0 ? "pt-5" : "pt-4"}`}>
-                {country.region}
+                <Link href={`/country/${country.name.common}`}>
+                  {country.region}
+                </Link>
               </td>
             </tr>
           ))}

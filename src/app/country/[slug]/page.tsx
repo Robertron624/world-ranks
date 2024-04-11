@@ -24,14 +24,18 @@ const countryData = async (countryName: string) => {
   }
 };
 
+const getExactCountry = async (countryName: string, countries: Country[]) => {
+  return countries.find((country) => country.name.common === countryName);
+}
+
 export default async function CountryPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const country = await countryData(params.slug);
+  const countries = await countryData(params.slug);
 
-  if (country === undefined) {
+  if (countries === undefined) {
     return (
       <main>
         <h1>
@@ -40,6 +44,8 @@ export default async function CountryPage({
       </main>
     );
   }
+
+  const exactCountry = await getExactCountry(params.slug, countries);
 
   return (
     <main className='flex min-h-screen flex-col items-center bg-hero-pattern bg-no-repeat bg-contain bg-top pt-20 bg-jet'>
@@ -54,7 +60,7 @@ export default async function CountryPage({
           />
         </Link>
       </div>
-        <CountryBox country={country[0]} />
+        {exactCountry && <CountryBox country={exactCountry} />}
     </main>
   );
 }

@@ -35,7 +35,7 @@ export function Search(
                 type="text" 
                 name="searchQuery" 
                 placeholder="Search by Name, Region, Subregion" 
-                className="p-3 pl-8 rounded-md border border-gray-300 w-80 bg-jet border-none placeholder:text-shuttle-gray"
+                className="p-3 pl-8 rounded-md border border-gray-300 w-80 bg-bunker border-none placeholder:text-shuttle-gray"
             />
         </form>
     )

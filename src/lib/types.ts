@@ -18,7 +18,7 @@ export interface Country {
     translations: Translations
     latlng: number[]
     landlocked: boolean
-    borders: string[]
+    borders?: string[]
     area: number
     demonyms: Demonyms
     flag: string

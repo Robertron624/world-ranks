@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import axios, { AxiosResponse } from "axios";
 import Link from "next/link";
@@ -60,7 +61,7 @@ export default async function CountryBox({country}: CountryBoxProps) {
         ['Continents', country.continents.join(', ')],
     ]
 
-    const neighboringCountries = await getNeighboringCountries(country.borders);
+    const neighboringCountries = country.borders ? await getNeighboringCountries(country.borders) : undefined;
 
     return (
         <main className="pb-4 bg-jet text-light-grayish-blue w-full max-w-xl mt-20 rounded-lg flex flex-col items-center shadow-box">
