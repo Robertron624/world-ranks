@@ -1,7 +1,7 @@
-import { Country, RegionOption, CountryStatusOption } from "./types";
+import { Country, RegionOption, CountryStatusOption, orderType } from "./types";
 import { sortingOptions } from "./constants";
 
-export function sortCountriesByPopulation(countries: Country[], order: "asc" | "desc") {
+export function sortCountriesByPopulation(countries: Country[], order: orderType) {
     return countries.sort((a, b) => {
         if (order === "asc") {
             return a.population - b.population;
@@ -11,7 +11,7 @@ export function sortCountriesByPopulation(countries: Country[], order: "asc" | "
     });
 }
 
-function sortCountriesByName(countries: Country[], order: "asc" | "desc") {
+function sortCountriesByName(countries: Country[], order: orderType) {
     return countries.sort((a, b) => {
         if (order === "asc") {
             return a.name.common.localeCompare(b.name.common);
@@ -21,7 +21,7 @@ function sortCountriesByName(countries: Country[], order: "asc" | "desc") {
     });
 }
 
-export function sortCountriesByArea(countries: Country[], order: "asc" | "desc") {
+export function sortCountriesByArea(countries: Country[], order: orderType) {
     return countries.sort((a, b) => {
         if (order === "asc") {
             return a.area - b.area;
@@ -37,11 +37,15 @@ export function formatCountryNumbers(population: number) {
     return formatter.format(population);
 }
 
-export function sortCountriesBy (sortingOption:string,countries: Country[], order: "asc" | "desc" = "desc") {
+export function sortCountriesBy (sortingOption:string, countries: Country[]) {
     
     let sortedCountries;
 
-    switch (sortingOption) {
+    const splitted = sortingOption.split('-');
+    const sortByOption = splitted[0];
+    const order = splitted[1] as orderType;
+
+    switch (sortByOption) {
         case 'population': {
             sortedCountries = sortCountriesByPopulation(countries, order);
             break;

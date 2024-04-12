@@ -36,7 +36,6 @@ export default function MainBox() {
   useEffect(() => {
     async function getCountries(
       orderBy: string,
-      order: "asc" | "desc" = "asc"
     ) {
       let url = `${countriesBaseUrl}/all`;
 
@@ -49,7 +48,7 @@ export default function MainBox() {
 
         const data = await response.data;
 
-        const orderedCountries = sortCountriesBy(orderBy, data, order);
+        const orderedCountries = sortCountriesBy(orderBy, data);
 
         setAllCountries(orderedCountries);
         setCurrentCountries(orderedCountries);
@@ -58,7 +57,7 @@ export default function MainBox() {
       }
     }
 
-    getCountries("population", "desc");
+    getCountries("population-desc");
   }, []);
 
   const handleSortByChange = (sortByOption: SortByOption) => {

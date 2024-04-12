@@ -6,9 +6,12 @@ interface SortingOption {
 }
 
 export const sortingOptions: SortingOption[] = [
-    { value: "population", label: "Population" },
-    { value: "name", label: "Name" },
-    { value: "area", label: "Area" },
+    { value: "population-desc", label: "Population (High to Low)" },
+    { value: "population-asc", label: "Population (Low to High)" },
+    { value: "name-desc", label: "Name (Z to A)" },
+    { value: "name-asc", label: "Name (A to Z)" },
+    { value: "area-desc", label: "Area (High to Low)" },
+    { value: "area-asc", label: "Area (Low to High)" },
 ];
 
 export const filterRegions: SortingOption[] = [

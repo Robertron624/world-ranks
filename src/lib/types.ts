@@ -277,3 +277,5 @@ export type SortByOption = "name" | "population" | "area";
 export type RegionOption = "africa" | "americas" | "asia" | "europe" | "oceania" | "antarctic";
 
 export type CountryStatusOption = "all" | "independent" | "un-member";
+
+export type orderType = "asc" | "desc";
