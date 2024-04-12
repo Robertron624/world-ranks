@@ -6,6 +6,8 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+
+  --accent-color: #4E80EE;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -67,12 +69,12 @@ body {
 }
 
 .pagination li:hover {
-  background-color: #4E80EE;
+  background-color: var(--accent-color);
   color: #D2D5DA;
 }
 
 .pagination li.active {
-  background-color: #4E80EE;
+  background-color: var(--accent-color);
   color: #D2D5DA;
 }
 
@@ -81,10 +83,15 @@ body {
   padding: 0;
   border-radius: 0;
   background-color: unset;
+  color: var(--accent-color);
 }
 
 .pagination li:last-child a,
 .pagination li:first-child a {
   width: unset;
   height: unset;
+}
+
+.pagination li.disabled {
+  color: currentColor;
 }

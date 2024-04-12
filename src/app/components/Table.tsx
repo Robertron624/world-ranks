@@ -12,17 +12,22 @@ import Link from "next/link";
 
 interface CountryRowProps {
   country: Country;
+  index: number;
 }
 
-function CountryRow({ country }: CountryRowProps) {
+function CountryRow({ country, index }: CountryRowProps) {
+
+  // rowHasMoreVerticalPadding is used to add more padding to the top and bottom of the first of every 10 rows
+  const rowHasMoreVerticalPadding = index % 10 === 0;
+
   return (
     <tr>
-      <td className='p-2'>
+      <td className={`${rowHasMoreVerticalPadding ? 'py-5 px-2' : 'p-2'}`}>
         <Link href={`/country/${country.name.common}`}>
           <Image
             src={country.flags.png}
             alt={country.name.common}
-            className='rounded-md w-auto'
+            className='rounded-md w-auto min-h-[3rem] max-h-[3rem] max-w-[4rem] object-contain'
             width={64}
             height={48}
           />
@@ -96,7 +101,7 @@ export function Table({ countries }: TableProps) {
         <tbody className=''>
           {filteredCountries &&
             filteredCountries.map((country, index) => (
-              <CountryRow key={index} country={country} />
+              <CountryRow key={index} country={country} index={index}/>
             ))}
         </tbody>
       </table>
