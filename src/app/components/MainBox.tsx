@@ -49,8 +49,6 @@ export default function MainBox() {
 
         const data = await response.data;
 
-        const first20Countries = data.slice(0, 20);
-
         const orderedCountries = sortCountriesBy(orderBy, data, order);
 
         setAllCountries(orderedCountries);
@@ -63,12 +61,18 @@ export default function MainBox() {
     getCountries("population", "desc");
   }, []);
 
-  const handleSortByChange = (sortBy: SortByOption) => {
-    setSortBy(sortBy);
+  const handleSortByChange = (sortByOption: SortByOption) => {
 
-    const sortedCountries = sortCountriesBy(sortBy, currentCountries);
+    if (sortByOption === sortBy) {
+      return;
+    }
+
+    setSortBy(sortByOption);
+
+    const sortedCountries = sortCountriesBy(sortByOption, currentCountries);
 
     setCurrentCountries(sortedCountries);
+    
   };
 
   const handleRegionChange = (region: RegionOption) => {
@@ -162,7 +166,7 @@ export default function MainBox() {
           selectedStatus={selectedStatus}
         />
         {currentCountries.length > 0 ? (
-          <Table countries={currentCountries} />
+          <Table countries={currentCountries} sortBy={sortBy}/>
         ): (<TableSkeleton />)}
       </div>
     </section>

@@ -57,9 +57,10 @@ function CountryRow({ country, index }: CountryRowProps) {
 
 interface TableProps {
   countries: Country[];
+  sortBy: string; // needed for useEffect to trigger when sortBy changes
 }
 
-export function Table({ countries }: TableProps) {
+export function Table({ countries, sortBy }: TableProps) {
   const [pageNumber, setPageNumber] = useState(0);
   const [filteredCountries, setFilteredCountries] = useState<Country[]>([]);
   const countriesPerPage = 10;
@@ -73,7 +74,7 @@ export function Table({ countries }: TableProps) {
         );
       })
     );
-  }, [pageNumber, countries]);
+  }, [pageNumber, countries, sortBy]);
 
   return (
     <div className=''>
