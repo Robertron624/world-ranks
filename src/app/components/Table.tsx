@@ -1,16 +1,77 @@
+"use client";
+
 import Image from "next/image";
+import ReactPaginate from "react-paginate";
+import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai";
+import { IconContext } from "react-icons";
+import { useState, useEffect } from "react";
 
 import { Country } from "@/lib/types";
 import { formatCountryNumbers } from "@/lib/utils";
 import Link from "next/link";
+
+interface CountryRowProps {
+  country: Country;
+}
+
+function CountryRow({ country }: CountryRowProps) {
+  return (
+    <tr>
+      <td className='p-2'>
+        <Link href={`/country/${country.name.common}`}>
+          <Image
+            src={country.flags.png}
+            alt={country.name.common}
+            className='rounded-md w-auto'
+            width={64}
+            height={48}
+          />
+        </Link>
+      </td>
+      <td className='p-2'>
+        <Link href={`/country/${country.name.common}`}>
+          {country.name.common}
+        </Link>
+      </td>
+      <td className='p-2'>
+        <Link href={`/country/${country.name.common}`}>
+          {formatCountryNumbers(country.population)}
+        </Link>
+      </td>
+      <td className='p-2'>
+        <Link href={`/country/${country.name.common}`}>
+          {formatCountryNumbers(country.area)}
+        </Link>
+      </td>
+      <td className='p-2'>
+        <Link href={`/country/${country.name.common}`}>{country.region}</Link>
+      </td>
+    </tr>
+  );
+}
 
 interface TableProps {
   countries: Country[];
 }
 
 export function Table({ countries }: TableProps) {
+  const [pageNumber, setPageNumber] = useState(0);
+  const [filteredCountries, setFilteredCountries] = useState<Country[]>([]);
+  const countriesPerPage = 10;
+
+  useEffect(() => {
+    setFilteredCountries(
+      countries.filter((country, index) => {
+        return (
+          index >= pageNumber * countriesPerPage &&
+          index < (pageNumber + 1) * countriesPerPage
+        );
+      })
+    );
+  }, [pageNumber, countries]);
+
   return (
-    <div className='max-h-[30rem] overflow-y-auto'>
+    <div className=''>
       <table className='table-auto w-full lg:w-[40rem] border-collapse'>
         {/* Colum names: flag, name, population, area, region*/}
         <thead>
@@ -33,43 +94,32 @@ export function Table({ countries }: TableProps) {
           </tr>
         </thead>
         <tbody className=''>
-          {countries.map((country, index) => (
-            <tr key={country.name.common} className=''>
-              <td className={`p-2 ${index === 0 ? "pt-7" : "pt-4"}`}>
-                <Link href={`/country/${country.name.common}`}>
-                <Image
-                  src={country.flags.png}
-                  alt={country.name.common}
-                  className='rounded-md w-auto'
-                  width={64}
-                  height={48}
-                />
-                </Link>
-              </td>
-              <td className={`p-2 ${index === 0 ? "pt-5" : "pt-4"}`}>
-                <Link href={`/country/${country.name.common}`}>
-                {country.name.common}
-                </Link>
-              </td>
-              <td className={`p-2 ${index === 0 ? "pt-5" : "pt-4"}`}>
-                <Link href={`/country/${country.name.common}`}>
-                  {formatCountryNumbers(country.population)}
-                </Link>
-              </td>
-              <td className={`p-2 ${index === 0 ? "pt-5" : "pt-4"}`}>
-                <Link href={`/country/${country.name.common}`}>
-                  {formatCountryNumbers(country.area)}
-                </Link>
-              </td>
-              <td className={`p-2 ${index === 0 ? "pt-5" : "pt-4"}`}>
-                <Link href={`/country/${country.name.common}`}>
-                  {country.region}
-                </Link>
-              </td>
-            </tr>
-          ))}
+          {filteredCountries &&
+            filteredCountries.map((country, index) => (
+              <CountryRow key={index} country={country} />
+            ))}
         </tbody>
       </table>
+      <ReactPaginate
+        previousLabel={
+          <IconContext.Provider value={{ size: "1.5rem" }}>
+            <AiFillLeftCircle />
+          </IconContext.Provider>
+        }
+        nextLabel={
+          <IconContext.Provider value={{ size: "1.5rem" }}>
+            <AiFillRightCircle />
+          </IconContext.Provider>
+        }
+        breakLabel={"..."}
+        breakClassName={"break-me"}
+        pageCount={Math.ceil(countries.length / countriesPerPage)}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={(data) => setPageNumber(data.selected)}
+        containerClassName={"pagination"}
+        activeClassName={"active"}
+      />
     </div>
   );
 }

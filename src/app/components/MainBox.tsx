@@ -162,7 +162,7 @@ export default function MainBox() {
           selectedStatus={selectedStatus}
         />
         {currentCountries.length > 0 ? (
-          <Table countries={currentCountries.slice(0, 20)} />
+          <Table countries={currentCountries} />
         ): (<TableSkeleton />)}
       </div>
     </section>
